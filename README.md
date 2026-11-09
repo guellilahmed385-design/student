@@ -1,24 +1,23 @@
-# 🎓 StudyMate AI
-A student productivity dashboard with an AI study tutor.
+# 🎓 StudyMate
+
+A simple student productivity dashboard. No AI, no API key, no account and no installation required.
 
 ## Features
-- AI tutor for maths, physics, chemistry, programming, languages and more.
-- Step-by-step explanations, concept explanations, summaries and revision questions.
-- Multilingual support: English, French, Arabic and Moroccan Darija.
-- Pomodoro timer, task manager, flashcards and study-session counter.
-- Tasks, cards and session count saved in browser localStorage.
+- Pomodoro focus timer.
+- Study task list with completion checkboxes.
+- Flashcards for revision.
+- Completed study-session counter.
+- Tasks, flashcards and session count saved in your browser using localStorage.
 
-## Run locally
-1. Install Node.js LTS.
-2. Copy `.env.example` to `.env`.
-3. Add your OpenAI API key after `OPENAI_API_KEY=` in `.env`.
-4. Run `npm install`, then `npm start`.
-5. Open http://localhost:3000.
+## Run it
+1. Download or clone this repository.
+2. Open the `index.html` file in your browser.
+3. Start studying!
 
-On Windows, you can run `start.bat` to create the environment file, install dependencies and launch the server.
+The app runs directly in your browser. It does not need Node.js, a server, an API key or an internet connection after the files have been downloaded.
 
-## Security
-Never commit `.env` or publish your API key. The API key belongs on the backend only. API usage may incur charges. A public deployment needs backend hosting, usage controls and preferably authentication. GitHub Pages alone cannot run this Node.js backend.
+## Privacy
+Your tasks, flashcards and study-session count stay in your browser's local storage. Clearing browser site data may erase them.
 
 ## License
-MIT. See [LICENSE](LICENSE).
+MIT.
