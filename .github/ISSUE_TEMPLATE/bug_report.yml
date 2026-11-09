@@ -1,0 +1,26 @@
+name: Bug report
+description: Report something that is not working correctly.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the issue clearly.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: What did you click or do before the issue appeared?
+    validations:
+      required: false
+  - type: textarea
+    id: browser
+    attributes:
+      label: Browser and device
+      description: Example: Chrome on Windows 11.
+    validations:
+      required: false
