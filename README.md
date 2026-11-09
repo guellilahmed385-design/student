@@ -1,30 +1,49 @@
 # StudyMate 🎓
 
-**A simple, free study workspace for students. Focus better, organise tasks, and revise with flashcards.**
+**A free, simple study workspace built for students. Plan your work, focus in short sessions, and revise with flashcards.**
 
-[🌐 Open StudyMate](https://guellilahmed385-design.github.io/student/) · [📖 Quick guide](docs/guide.md) · [💡 Send feedback](https://github.com/guellilahmed385-design/student/issues/new/choose)
+<p align="center">
+  <img src="assets/studymate-promo.svg" alt="StudyMate — focus, organise, revise" width="800">
+</p>
 
-![StudyMate preview](assets/studymate-promo.svg)
+<p align="center">
+  <a href="https://guellilahmed385-design.github.io/student/"><strong>🌐 Open StudyMate</strong></a> ·
+  <a href="guide.html">📖 User guide</a> ·
+  <a href="https://github.com/guellilahmed385-design/student/issues/new/choose">💬 Feedback</a>
+</p>
 
-## What you can do
-- **Pomodoro timer:** 25-minute focus sessions, 5-minute short breaks, and 15-minute long breaks.
-- **Task manager:** add tasks, mark them complete, and track daily progress.
-- **Flashcards:** create question-and-answer cards and revise with active recall.
-- **Simple statistics:** see your completed focus sessions, tasks, and flashcards.
+## ✨ Features
 
-## Get started
+- **Pomodoro focus timer:** 25-minute focus, 5-minute short break, and 15-minute long break.
+- **Task manager:** add tasks, mark them complete, and see your daily progress.
+- **Flashcards:** create question-and-answer cards and practise active recall.
+- **Study statistics:** track completed focus sessions, tasks, and flashcards.
+- **Automatic saving:** your progress is saved in your browser on the device you use.
+- **Quick sharing:** use the Share button to send the app link to classmates.
+
+## 🚀 Get started
+
 1. Open the [StudyMate website](https://guellilahmed385-design.github.io/student/).
 2. Start a focus session or add your study tasks.
 3. Create flashcards from your lessons and use them for revision.
-4. Your progress is saved locally in the browser on the device you use.
+4. Your progress is saved automatically in your browser.
 
-You can also download this repository and open `index.html` directly. No installation, account, API key, or AI service is required.
+No account, installation, API key, or AI service is required. You can also download the repository and open `index.html` directly.
 
-## Privacy
-StudyMate stores tasks, flashcards, and focus-session counts in your browser's local storage. The project does not need an account or send this study data to a server. Clearing browser data may erase saved progress. If you use a different browser or device, your data will not automatically sync.
+## 🔐 Privacy
 
-## Help improve StudyMate
-Found a bug or have an idea? [Open a feedback issue](https://github.com/guellilahmed385-design/student/issues/new/choose).
+StudyMate stores tasks, flashcards, and focus-session counts in your browser's local storage. This study data is not uploaded to a StudyMate server. Clearing browser data may erase saved progress. Your data does not automatically sync between different browsers or devices.
 
-## License
+## 💡 Help improve the project
+
+- Found a bug? [Report it here](https://github.com/guellilahmed385-design/student/issues/new?template=bug_report.md).
+- Have an idea? [Suggest a feature](https://github.com/guellilahmed385-design/student/issues/new?template=feature_request.md).
+- Want to share StudyMate? Send classmates the [live app link](https://guellilahmed385-design.github.io/student/).
+
+## 🧑‍💻 Project
+
+Built as a student project to make everyday studying easier. Contributions and constructive feedback are welcome.
+
+## 📄 License
+
 MIT — see [LICENSE](LICENSE).
