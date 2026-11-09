@@ -1,0 +1,21 @@
+const $=id=>document.getElementById(id);
+let history=[];
+function bubble(role,text){const el=document.createElement("div");el.className="msg "+role;el.textContent=text;$("chatBox").append(el);$("chatBox").scrollTop=$("chatBox").scrollHeight}
+async function status(){try{const r=await fetch("/api/health");const d=await r.json();$("aiStatus").textContent=d.aiConfigured?"● AI ready":"● Add API key to .env";}catch{$("aiStatus").textContent="● Backend offline"}}
+$("chatForm").addEventListener("submit",async e=>{e.preventDefault();const q=$("chatInput").value.trim();if(!q||$("sendButton").disabled)return;$("chatInput").value="";history.push({role:"user",content:q});bubble("user",q);$("chatStatus").textContent="Thinking…";$("sendButton").disabled=true;try{const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:history})});const d=await r.json();if(!r.ok)throw Error(d.error||"Request failed");history.push({role:"assistant",content:d.answer});bubble("ai",d.answer);$("chatStatus").textContent="";}catch(err){history.pop();$("chatStatus").textContent=err.message;}finally{$("sendButton").disabled=false;}});
+$("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();$("chatForm").requestSubmit()}});
+document.querySelectorAll("[data-prompt]").forEach(b=>b.onclick=()=>{$("chatInput").value=b.dataset.prompt;$("chatInput").focus()});
+$("clearChat").onclick=()=>{history=[];$("chatBox").replaceChildren();bubble("ai","New study session. What would you like to learn?");$("chatStatus").textContent=""};
+let seconds=1500,tick=null,sessions=Number(localStorage.getItem("sm_sessions")||0);
+function showTime(){$("timer").textContent=String(Math.floor(seconds/60)).padStart(2,"0")+":"+String(seconds%60).padStart(2,"0");$("sessions").textContent=sessions}
+$("startTimer").onclick=()=>{if(tick)return;tick=setInterval(()=>{if(seconds>0){seconds--;showTime()}else{clearInterval(tick);tick=null;sessions++;localStorage.setItem("sm_sessions",sessions);seconds=1500;showTime();alert("Focus session complete! Take a short break.")}},1000)};
+$("pauseTimer").onclick=()=>{clearInterval(tick);tick=null};$("resetTimer").onclick=()=>{clearInterval(tick);tick=null;seconds=1500;showTime()};
+let tasks=JSON.parse(localStorage.getItem("sm_tasks")||"[]");
+function renderTasks(){const ul=$("taskList");ul.replaceChildren();tasks.forEach((t,i)=>{const li=document.createElement("li"),cb=document.createElement("input"),s=document.createElement("span"),del=document.createElement("button");cb.type="checkbox";cb.checked=t.done;cb.style.width="auto";cb.onchange=()=>{tasks[i].done=cb.checked;saveTasks()};s.textContent=t.text;if(t.done)li.classList.add("done");del.textContent="Delete";del.onclick=()=>{tasks.splice(i,1);saveTasks()};li.append(cb,s,del);ul.append(li)})}
+function saveTasks(){localStorage.setItem("sm_tasks",JSON.stringify(tasks));renderTasks()}
+$("taskForm").onsubmit=e=>{e.preventDefault();const v=$("taskInput").value.trim();if(v){tasks.push({text:v,done:false});$("taskInput").value="";saveTasks()}};
+let cards=JSON.parse(localStorage.getItem("sm_cards")||"[]"),current=0;
+function renderCard(){ $("cardCount").textContent=cards.length+" flashcard"+(cards.length===1?"":"s");if(!cards.length){$("flashQuestion").textContent="Your flashcards appear here.";$("flashAnswer").hidden=true;return}current=(current+cards.length)%cards.length;$("flashQuestion").textContent=cards[current].q;$("flashAnswer").textContent=cards[current].a;$("flashAnswer").hidden=true}
+$("flashcardForm").onsubmit=e=>{e.preventDefault();const q=$("questionInput").value.trim(),a=$("answerInput").value.trim();if(q&&a){cards.push({q,a});current=cards.length-1;localStorage.setItem("sm_cards",JSON.stringify(cards));$("questionInput").value="";$("answerInput").value="";renderCard()}};
+$("showAnswer").onclick=()=>{if(cards.length)$("flashAnswer").hidden=false};$("nextCard").onclick=()=>{if(cards.length){current=(current+1)%cards.length;renderCard()}};$("deleteCard").onclick=()=>{if(cards.length){cards.splice(current,1);localStorage.setItem("sm_cards",JSON.stringify(cards));renderCard()}};
+showTime();renderTasks();renderCard();status();
