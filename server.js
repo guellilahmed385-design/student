@@ -5,8 +5,8 @@ import {fileURLToPath} from "node:url";
 import OpenAI from "openai";
 import rateLimit from "express-rate-limit";
 const __dirname=path.dirname(fileURLToPath(import.meta.url));
-const app=express(),PORT=Number(process.env.PORT||3000),MODEL=process.env.OPENAI_MODEL||"gpt-5.5";
-app.disable("x-powered-by");app.use(express.json({limit:"30kb"}));app.use(express.static(path.join(__dirname,"public")));
+const app=express(),PORT=Number(process.env.PORT||3000),MODEL=process.env.OPENAI_MODEL||"gpt-6-astra";
+app.disable("x-powered-by");app.use(express.json({limit:"30kb"}));app.use(express.static(__dirname));
 const limiter=rateLimit({windowMs:60000,limit:15,standardHeaders:"draft-7",legacyHeaders:false});
 app.get("/api/health",(_req,res)=>res.json({ok:true,aiConfigured:Boolean(process.env.OPENAI_API_KEY),model:MODEL}));
 app.post("/api/chat",limiter,async(req,res)=>{try{
@@ -18,5 +18,5 @@ const client=new OpenAI({apiKey:process.env.OPENAI_API_KEY});
 const response=await client.responses.create({model:MODEL,instructions:"You are StudyMate AI, a friendly and accurate study tutor. Help with mathematics, physics, chemistry, programming, languages and study skills. Explain exercises step by step and concepts simply with examples. Reply in the student's language, including English, French, Arabic or Moroccan Darija when possible. Ask a short clarification if needed. Do not invent facts or claim to have read files not provided. Be age-appropriate and concise.",input:messages,max_output_tokens:1200});
 res.json({answer:response.output_text||"I couldn't generate an answer. Please try again."});
 }catch(err){console.error("AI error:",err);if(err.status===401)return res.status(500).json({error:"API key rejected. Check .env."});if(err.status===429)return res.status(429).json({error:"AI quota or rate limit reached. Check API usage."});res.status(500).json({error:"AI assistant error. Please try again."})}});
-app.get("*",(_req,res)=>res.sendFile(path.join(__dirname,"public","index.html")));
+app.get("*",(_req,res)=>res.sendFile(path.join(__dirname,"index.html")));
 app.listen(PORT,()=>console.log("StudyMate running at http://localhost:"+PORT));
