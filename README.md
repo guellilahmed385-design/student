@@ -1,23 +1,30 @@
-# 🎓 StudyMate
+# StudyMate 🎓
 
-A simple student productivity dashboard. No AI, no API key, no account and no installation required.
+**A simple, free study workspace for students. Focus better, organise tasks, and revise with flashcards.**
 
-## Features
-- Pomodoro focus timer.
-- Study task list with completion checkboxes.
-- Flashcards for revision.
-- Completed study-session counter.
-- Tasks, flashcards and session count saved in your browser using localStorage.
+[🌐 Open StudyMate](https://guellilahmed385-design.github.io/student/) · [📖 Quick guide](docs/guide.md) · [💡 Send feedback](https://github.com/guellilahmed385-design/student/issues/new/choose)
 
-## Run it
-1. Download or clone this repository.
-2. Open the `index.html` file in your browser.
-3. Start studying!
+![StudyMate preview](assets/studymate-promo.svg)
 
-The app runs directly in your browser. It does not need Node.js, a server, an API key or an internet connection after the files have been downloaded.
+## What you can do
+- **Pomodoro timer:** 25-minute focus sessions, 5-minute short breaks, and 15-minute long breaks.
+- **Task manager:** add tasks, mark them complete, and track daily progress.
+- **Flashcards:** create question-and-answer cards and revise with active recall.
+- **Simple statistics:** see your completed focus sessions, tasks, and flashcards.
+
+## Get started
+1. Open the [StudyMate website](https://guellilahmed385-design.github.io/student/).
+2. Start a focus session or add your study tasks.
+3. Create flashcards from your lessons and use them for revision.
+4. Your progress is saved locally in the browser on the device you use.
+
+You can also download this repository and open `index.html` directly. No installation, account, API key, or AI service is required.
 
 ## Privacy
-Your tasks, flashcards and study-session count stay in your browser's local storage. Clearing browser site data may erase them.
+StudyMate stores tasks, flashcards, and focus-session counts in your browser's local storage. The project does not need an account or send this study data to a server. Clearing browser data may erase saved progress. If you use a different browser or device, your data will not automatically sync.
+
+## Help improve StudyMate
+Found a bug or have an idea? [Open a feedback issue](https://github.com/guellilahmed385-design/student/issues/new/choose).
 
 ## License
-MIT.
+MIT — see [LICENSE](LICENSE).
