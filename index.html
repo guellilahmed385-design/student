@@ -1,14 +1,63 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="StudyMate AI student productivity dashboard"><title>StudyMate AI</title><link rel="stylesheet" href="styles.css"><script src="app.js" defer></script></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple student productivity dashboard with a Pomodoro timer, tasks and flashcards.">
+  <title>StudyMate</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
 <body>
-<header><p class="eyebrow">YOUR PERSONAL LEARNING SPACE</p><h1>🎓 StudyMate <span>AI</span></h1><p class="muted">Study smarter, stay focused, understand more.</p><span id="aiStatus" class="badge">Checking AI…</span></header>
+<header>
+  <p class="eyebrow">YOUR PERSONAL LEARNING SPACE</p>
+  <h1>🎓 StudyMate</h1>
+  <p class="muted">A simple space to organise your study sessions.</p>
+</header>
 <main class="grid">
-<section class="card wide"><div class="row"><h2>🤖 AI Study Tutor</h2><button id="clearChat" class="ghost">Clear chat</button></div><p class="muted">Ask about maths, physics, programming, languages, or any subject. Get clear step-by-step explanations.</p>
-<div class="chips"><button class="chip" data-prompt="Explain this concept simply and give an example: ">Explain concept</button><button class="chip" data-prompt="Help me solve this exercise step by step: ">Solve exercise</button><button class="chip" data-prompt="Summarize these notes into key points: ">Summarize notes</button><button class="chip" data-prompt="Create 5 revision questions about: ">Create quiz</button></div>
-<div id="chatBox" class="chat"><div class="msg ai">Hi! I'm StudyMate AI. Ask your study question in English, French, Arabic, or Darija.</div></div>
-<form id="chatForm" class="row"><textarea id="chatInput" maxlength="4000" placeholder="Ask StudyMate anything…" required></textarea><button id="sendButton" class="primary">Send ➤</button></form><p id="chatStatus" class="hint"></p><p class="hint">AI can make mistakes. Check important answers with your course materials.</p></section>
-<section class="card"><h2>⏱️ Pomodoro</h2><div id="timer" class="timer">25:00</div><div class="row"><button id="startTimer" class="primary">Start</button><button id="pauseTimer" class="ghost">Pause</button><button id="resetTimer" class="ghost">Reset</button></div></section>
-<section class="card"><h2>📝 My Tasks</h2><form id="taskForm" class="row"><input id="taskInput" maxlength="120" placeholder="Add a study task…" required><button class="primary">Add</button></form><ul id="taskList"></ul><p class="hint">Saved in this browser.</p></section>
-<section class="card"><h2>📚 Flashcards</h2><form id="flashcardForm"><input id="questionInput" maxlength="250" placeholder="Question or term…" required><textarea id="answerInput" maxlength="1000" placeholder="Answer or definition…" required></textarea><button class="primary">Save card</button></form><div class="flash"><strong id="flashQuestion">Your flashcards appear here.</strong><p id="flashAnswer" hidden></p></div><div class="row"><button id="showAnswer" class="ghost">Show answer</button><button id="nextCard" class="ghost">Next</button><button id="deleteCard" class="ghost">Delete</button></div><p id="cardCount" class="hint">0 flashcards</p></section>
-<section class="card"><h2>📊 Study Statistics</h2><div id="sessions" class="timer green">0</div><p class="muted">Completed Pomodoro sessions</p></section>
-</main><footer>Made for students, by a student. Keep learning. ✨</footer></body></html>
+  <section class="card">
+    <h2>⏱️ Pomodoro</h2>
+    <div id="timer" class="timer">25:00</div>
+    <div class="row">
+      <button id="startTimer" class="primary">Start</button>
+      <button id="pauseTimer" class="ghost">Pause</button>
+      <button id="resetTimer" class="ghost">Reset</button>
+    </div>
+    <p class="hint">Focus for 25 minutes, then take a short break.</p>
+  </section>
+  <section class="card">
+    <h2>📝 My Tasks</h2>
+    <form id="taskForm" class="row">
+      <input id="taskInput" maxlength="120" placeholder="Add a study task…" required>
+      <button class="primary">Add</button>
+    </form>
+    <ul id="taskList"></ul>
+    <p class="hint">Your tasks are saved in this browser.</p>
+  </section>
+  <section class="card">
+    <h2>📚 Flashcards</h2>
+    <form id="flashcardForm">
+      <input id="questionInput" maxlength="250" placeholder="Question or term…" required>
+      <textarea id="answerInput" maxlength="1000" placeholder="Answer or definition…" required></textarea>
+      <button class="primary">Save card</button>
+    </form>
+    <div class="flash">
+      <strong id="flashQuestion">Your flashcards appear here.</strong>
+      <p id="flashAnswer" hidden></p>
+    </div>
+    <div class="row">
+      <button id="showAnswer" class="ghost">Show answer</button>
+      <button id="nextCard" class="ghost">Next</button>
+      <button id="deleteCard" class="ghost">Delete</button>
+    </div>
+    <p id="cardCount" class="hint">0 flashcards</p>
+  </section>
+  <section class="card">
+    <h2>📊 Study Statistics</h2>
+    <div id="sessions" class="timer green">0</div>
+    <p class="muted">Completed Pomodoro sessions</p>
+  </section>
+</main>
+<footer>Made for students, by a student. Keep learning. ✨</footer>
+</body>
+</html>
