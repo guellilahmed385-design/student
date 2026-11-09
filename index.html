@@ -1,63 +1,56 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A simple student productivity dashboard with a Pomodoro timer, tasks and flashcards.">
-  <title>StudyMate</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="StudyMate — a calm, simple workspace for focused study.">
+  <title>StudyMate — Your study space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><script src="app.js" defer></script>
 </head>
 <body>
-<header>
-  <p class="eyebrow">YOUR PERSONAL LEARNING SPACE</p>
-  <h1>🎓 StudyMate</h1>
-  <p class="muted">A simple space to organise your study sessions.</p>
-</header>
-<main class="grid">
-  <section class="card">
-    <h2>⏱️ Pomodoro</h2>
-    <div id="timer" class="timer">25:00</div>
-    <div class="row">
-      <button id="startTimer" class="primary">Start</button>
-      <button id="pauseTimer" class="ghost">Pause</button>
-      <button id="resetTimer" class="ghost">Reset</button>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-mark">S</span><span>StudyMate<small>STUDENT WORKSPACE</small></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <a class="nav-link active" href="#overview"><span>⌂</span> Overview</a>
+    <a class="nav-link" href="#focus"><span>◷</span> Focus timer</a>
+    <a class="nav-link" href="#tasks"><span>☷</span> My tasks</a>
+    <a class="nav-link" href="#cards"><span>▤</span> Flashcards</a>
+    <div class="sidebar-note"><span class="note-icon">✦</span><strong>Small steps add up.</strong><p>Show up, focus, and make progress one session at a time.</p></div>
+    <div class="side-bottom"><span class="online-dot"></span> Your progress is saved on this device</div>
+  </aside>
+  <main class="main-content" id="overview">
+    <header class="topbar"><div><p class="eyebrow" id="todayLabel">YOUR STUDY SPACE</p><h1>Make today count<span>.</span></h1><p class="subtitle">A little progress every day goes a long way.</p></div><div class="top-pill"><span class="online-dot"></span> Personal workspace</div></header>
+    <section class="stats-grid">
+      <article class="stat-card"><div class="stat-icon violet">◷</div><p>Focus sessions</p><strong id="sessions">0</strong><small>Completed in total</small></article>
+      <article class="stat-card"><div class="stat-icon mint">✓</div><p>Tasks completed</p><strong id="completedTasks">0</strong><small id="taskSummary">Keep moving forward</small></article>
+      <article class="stat-card"><div class="stat-icon amber">▤</div><p>Flashcards</p><strong id="totalCards">0</strong><small>Ready for revision</small></article>
+    </section>
+    <div class="content-grid">
+      <section class="panel focus-panel" id="focus">
+        <div class="panel-heading"><div><p class="eyebrow">DEEP WORK</p><h2>Focus timer</h2></div><span class="live-tag"><i></i> FOCUS MODE</span></div>
+        <div class="timer-wrap"><div class="timer-ring"><div class="timer-inner"><span id="timer">25:00</span><small id="timerMode">TIME TO FOCUS</small></div></div></div>
+        <div class="presets"><button class="preset active" data-minutes="25">Focus 25</button><button class="preset" data-minutes="5">Short break 5</button><button class="preset" data-minutes="15">Long break 15</button></div>
+        <div class="timer-actions"><button id="startTimer" class="btn-primary">▶ &nbsp; Start focus</button><button id="pauseTimer" class="btn-secondary">Ⅱ</button><button id="resetTimer" class="btn-secondary">↺</button></div>
+        <p class="panel-footnote">Stay present. One task at a time.</p>
+      </section>
+      <section class="panel tasks-panel" id="tasks">
+        <div class="panel-heading"><div><p class="eyebrow">STAY ON TRACK</p><h2>Today's tasks</h2></div><span class="count-badge" id="taskCount">0 tasks</span></div>
+        <form id="taskForm" class="task-form"><input id="taskInput" maxlength="120" placeholder="What do you need to do?" aria-label="New task" required><button class="add-btn" aria-label="Add task">+</button></form>
+        <div class="progress-head"><span>Daily progress</span><strong id="progressText">0%</strong></div><div class="progress-track"><div id="progressBar"></div></div>
+        <ul id="taskList" class="task-list"></ul><p id="emptyTasks" class="empty-state">Nothing on your list yet. Add a task to get started ✨</p>
+      </section>
+      <section class="panel flash-panel" id="cards">
+        <div class="panel-heading"><div><p class="eyebrow">ACTIVE RECALL</p><h2>Flashcards</h2></div><span class="count-badge" id="cardCount">0 cards</span></div>
+        <div class="flash-stage"><span class="card-kicker">YOUR CURRENT CARD</span><strong id="flashQuestion">Your first question goes here.</strong><p id="flashAnswer" hidden></p><button id="showAnswer" class="reveal-btn">Reveal answer&nbsp; ↓</button></div>
+        <div class="flash-controls"><button id="prevCard" class="btn-secondary" aria-label="Previous card">←</button><span id="cardPosition">0 / 0</span><button id="nextCard" class="btn-secondary" aria-label="Next card">→</button><button id="deleteCard" class="delete-btn">Delete</button></div>
+        <form id="flashcardForm" class="create-card"><input id="questionInput" maxlength="250" placeholder="Question or term" aria-label="Flashcard question" required><textarea id="answerInput" maxlength="1000" placeholder="Answer or definition" aria-label="Flashcard answer" required></textarea><button class="btn-primary">＋ Create flashcard</button></form>
+      </section>
     </div>
-    <p class="hint">Focus for 25 minutes, then take a short break.</p>
-  </section>
-  <section class="card">
-    <h2>📝 My Tasks</h2>
-    <form id="taskForm" class="row">
-      <input id="taskInput" maxlength="120" placeholder="Add a study task…" required>
-      <button class="primary">Add</button>
-    </form>
-    <ul id="taskList"></ul>
-    <p class="hint">Your tasks are saved in this browser.</p>
-  </section>
-  <section class="card">
-    <h2>📚 Flashcards</h2>
-    <form id="flashcardForm">
-      <input id="questionInput" maxlength="250" placeholder="Question or term…" required>
-      <textarea id="answerInput" maxlength="1000" placeholder="Answer or definition…" required></textarea>
-      <button class="primary">Save card</button>
-    </form>
-    <div class="flash">
-      <strong id="flashQuestion">Your flashcards appear here.</strong>
-      <p id="flashAnswer" hidden></p>
-    </div>
-    <div class="row">
-      <button id="showAnswer" class="ghost">Show answer</button>
-      <button id="nextCard" class="ghost">Next</button>
-      <button id="deleteCard" class="ghost">Delete</button>
-    </div>
-    <p id="cardCount" class="hint">0 flashcards</p>
-  </section>
-  <section class="card">
-    <h2>📊 Study Statistics</h2>
-    <div id="sessions" class="timer green">0</div>
-    <p class="muted">Completed Pomodoro sessions</p>
-  </section>
-</main>
-<footer>Made for students, by a student. Keep learning. ✨</footer>
-</body>
-</html>
+    <footer>Made for students, by a student <span>✦</span> Keep learning.</footer>
+  </main>
+</div>
+</body></html>
