@@ -21,3 +21,28 @@ $("prevCard").onclick=()=>{if(cards.length){current=(current-1+cards.length)%car
 $("deleteCard").onclick=()=>{if(!cards.length)return;cards.splice(current,1);current=Math.max(0,Math.min(current,cards.length-1));saveCards();renderCard();renderStats()};
 $("todayLabel").textContent=new Intl.DateTimeFormat(undefined,{weekday:"long",month:"long",day:"numeric"}).format(new Date()).toUpperCase();
 showTime();renderTasks();renderCard();renderStats();
+
+// Share the app with classmates.
+const shareButton = $("shareApp");
+if (shareButton) {
+  shareButton.addEventListener("click", async () => {
+    const shareData = {
+      title: "StudyMate — Your study space",
+      text: "A free study workspace with a focus timer, tasks and flashcards.",
+      url: window.location.href
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(shareData.url);
+        shareButton.textContent = "✓ Link copied";
+        setTimeout(() => shareButton.textContent = "↗ Share StudyMate", 2200);
+      } else {
+        window.prompt("Copy your StudyMate link:", shareData.url);
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") window.prompt("Copy your StudyMate link:", shareData.url);
+    }
+  });
+}
