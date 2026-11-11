@@ -25,24 +25,57 @@ showTime();renderTasks();renderCard();renderStats();
 // Share the app with classmates.
 const shareButton = $("shareApp");
 if (shareButton) {
+  let shareFeedbackTimer;
+  const copyShareLink = async (url) => {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(url);
+      return true;
+    }
+    const field = document.createElement("textarea");
+    field.value = url;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.append(field);
+    field.select();
+    let copied = false;
+    try {
+      copied = document.execCommand("copy");
+    } finally {
+      field.remove();
+    }
+    return copied;
+  };
+  const showShareFeedback = (label) => {
+    clearTimeout(shareFeedbackTimer);
+    shareButton.textContent = label;
+    shareFeedbackTimer = setTimeout(() => {
+      shareButton.textContent = "↗ Share StudyMate";
+    }, 2200);
+  };
   shareButton.addEventListener("click", async () => {
     const shareData = {
       title: "StudyMate — Your study space",
       text: "A free study workspace with a focus timer, tasks and flashcards.",
       url: window.location.href
     };
-    try {
-      if (navigator.share) {
+    if (navigator.share) {
+      try {
         await navigator.share(shareData);
-      } else if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(shareData.url);
-        shareButton.textContent = "✓ Link copied";
-        setTimeout(() => shareButton.textContent = "↗ Share StudyMate", 2200);
-      } else {
-        window.prompt("Copy your StudyMate link:", shareData.url);
+        showShareFeedback("✓ Shared");
+        return;
+      } catch (error) {
+        if (error.name === "AbortError") return;
+      }
+    }
+    try {
+      if (await copyShareLink(shareData.url)) {
+        showShareFeedback("✓ Link copied");
+        return;
       }
     } catch (error) {
-      if (error.name !== "AbortError") window.prompt("Copy your StudyMate link:", shareData.url);
+      // Fall through to the manual copy prompt.
     }
+    window.prompt("Copy your StudyMate link:", shareData.url);
   });
 }
