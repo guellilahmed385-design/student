@@ -84,3 +84,14 @@ if (shareButton) {
     window.prompt("Copy your StudyMate link:", shareData.url);
   });
 }
+
+window.addEventListener("studymate:data-restored",()=>{
+  tasks=read("sm_tasks",[]);
+  cards=read("sm_cards",[]);
+  sessions=Number(localStorage.getItem("sm_sessions")||0);
+  selectedModule=read("sm_flashcard_module","algebra1");
+  if(!flashcardDecks[selectedModule]&&selectedModule!=="personal")selectedModule="algebra1";
+  flashcardModule.value=selectedModule;
+  current=0;
+  renderTasks();renderCard();renderStats();
+});
