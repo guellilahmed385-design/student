@@ -1,6 +1,6 @@
-// Add the Supabase project URL and publishable/anon key from your project settings.
-// This browser key is public by design. Never put a service_role/secret key here.
+// Public Supabase project URL and publishable key for browser clients.
+// Publishable keys are designed to be public; never put a secret key here.
 window.STUDYMATE_SUPABASE_CONFIG = {
-  url: "",
-  anonKey: ""
+  url: "https://bhhgpcqoutobpgnadycw.supabase.co",
+  anonKey: "sb_publishable_0uEssyv_pSLX5ZdaY7e5Ng_sNWa49aV"
 };
